@@ -6,6 +6,7 @@ class NodeTerm:
         self.children = []
         self.parent = None
         self.position = None
+        self.node_type = None
 
     def add_childern_to_list(self, child):
         self.children.append(child)
@@ -42,22 +43,22 @@ class NodeTerm:
         return string
 
     def get_arity(self):
-        return len(self.get_nr_of_children())
+        return self.get_nr_of_children()
 
-    def get_node_type(self):
-        """
-            If an element has a 0 arity   --> is a variable or a constant
-                                arity > 0 --> is a term
+    # def get_node_type(self):
+    #     """
+    #         If an element has a 0 arity   --> is a variable or a constant
+    #                             arity > 0 --> is a term
 
-            The element also needs to be made out of letters
-        """
-        if self.content.isalpha():
-            if(self.get_nr_of_children() > 0):
-                return "term"
-            else:
-                return "variable"
-        else:
-            return "not a term, not a variable"
+    #         The element also needs to be made out of letters
+    #     """
+    #     if self.content.isalpha():
+    #         if(self.get_nr_of_children() > 0):
+    #             return "term"
+    #         else:
+    #             return "variable"
+    #     else:
+    #         return "not a term, not a variable"
 
     def get_position(self):
         # calculate the position recursively
@@ -71,4 +72,9 @@ class NodeTerm:
 
         return self.position
             
+    def set_node_type(self, type):
+        self.node_type = type 
+
+    def get_node_type(self):
+        return self.node_type
 
